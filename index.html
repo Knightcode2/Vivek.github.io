@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rishi Verma — AI/ML Engineer (B.Tech CSE-AI)</title>
+<meta name="description" content="Rishi Verma — B.Tech CSE (AI) student building interpretable, deployed machine learning systems. Heart disease prediction with a six-model soft-voting ensemble, live on the web.">
+<style>
+:root{
+  --bg:#07100f; --panel:#0d1a18; --panel2:#112220; --line:#1c3330;
+  --ink:#e6f2ef; --mute:#8fb0aa; --accent:#3ef0b0; --accent2:#ff5d73; --warn:#ffc857;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+:root[data-theme="light"]{
+  --bg:#f4f9f7; --panel:#ffffff; --panel2:#eaf4f1; --line:#cfe3de;
+  --ink:#0d1f1c; --mute:#4d6b65; --accent:#0a9d6e; --accent2:#d63550; --warn:#b7791f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:18px;height:56px;overflow-x:auto;white-space:nowrap}
+nav .brand{font-family:var(--mono);font-weight:700;color:var(--accent);margin-right:auto}
+nav a.l{color:var(--mute);font-size:.9rem}
+nav a.l:hover{color:var(--ink);text-decoration:none}
+button.theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-family:var(--mono);font-size:.8rem}
+.tag{font-family:var(--mono);font-size:.78rem;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin:6px 0 10px;letter-spacing:-.01em}
+.lead{color:var(--mute);max-width:720px}
+
+/* hero */
+.hero{padding:56px 0 64px}
+.hero .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.rec{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;color:var(--mute);margin-bottom:14px}
+.rec i{width:9px;height:9px;border-radius:50%;background:var(--accent2);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.05;letter-spacing:-.03em}
+.role{margin:10px 0 18px;color:var(--accent);font-weight:600}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{padding:11px 18px;border-radius:10px;border:1px solid var(--accent);font-weight:600;font-size:.95rem}
+.btn.p{background:var(--accent);color:#04120d}
+.btn.p:hover{text-decoration:none;filter:brightness(1.1)}
+.btn:not(.p):hover{background:var(--panel2);text-decoration:none}
+.monitor{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+.monitor .top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.75rem;color:var(--mute);margin-bottom:8px}
+.monitor .top b{color:var(--accent)}
+svg.ecg{width:100%;height:auto;display:block}
+.ecg path{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3.2s linear infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+.monitor .vit{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.monitor .vit div{background:var(--panel2);border-radius:10px;padding:8px 10px;font-family:var(--mono);font-size:.7rem;color:var(--mute)}
+.monitor .vit strong{display:block;font-size:1.2rem;color:var(--ink)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat b{display:block;font-size:2rem;font-family:var(--mono);color:var(--accent);letter-spacing:-.02em}
+.stat span{color:var(--mute);font-size:.88rem}
+
+/* timeline */
+.log{margin-top:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.row{display:grid;grid-template-columns:70px 130px 1fr;gap:18px;padding:18px 20px;background:var(--panel);border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .n{font-family:var(--mono);color:var(--mute)}
+.row .d{font-family:var(--mono);color:var(--accent);font-size:.88rem}
+.row h3{font-size:1.05rem}
+.row p{color:var(--mute);font-size:.94rem;margin-top:4px}
+
+/* projects */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 10px}
+.chip{font-family:var(--mono);font-size:.78rem;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--mute);cursor:pointer}
+.chip.on{background:var(--accent);color:#04120d;border-color:var(--accent)}
+.feature{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px;margin-top:18px;position:relative;overflow:hidden}
+.feature::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+.feature h3{font-size:1.4rem;margin:4px 0 10px}
+.feature p{color:var(--mute);margin-bottom:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:16px}
+.two ul{list-style:none}
+.two li{padding:7px 0;border-bottom:1px dashed var(--line);font-size:.93rem;display:flex;justify-content:space-between;gap:12px}
+.two li span:last-child{font-family:var(--mono);color:var(--accent)}
+.two h4,.sub{font-family:var(--mono);font-size:.78rem;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.bars{margin-top:6px}
+.bar{display:grid;grid-template-columns:150px 1fr 52px;gap:10px;align-items:center;font-size:.85rem;margin:6px 0}
+.bar div{height:9px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--warn));border-radius:99px}
+.bar em{font-style:normal;font-family:var(--mono);color:var(--mute);text-align:right}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.pill{font-family:var(--mono);font-size:.76rem;padding:4px 10px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{font-size:1.1rem;margin:4px 0 8px}
+.card p{color:var(--mute);font-size:.94rem}
+.card.todo{border-style:dashed}
+.card .k{font-family:var(--mono);font-size:.74rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.08em}
+.hidden{display:none!important}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.skills .card h3{font-size:.95rem;font-family:var(--mono);color:var(--accent);margin-bottom:10px}
+
+/* insights */
+.ins{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+.ins .card b{color:var(--ink)}
+
+/* contact */
+.contact{display:flex;flex-wrap:wrap;gap:18px 34px;margin-top:34px}
+.contact a,.contact span{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:1rem;color:var(--ink);padding-bottom:6px;border-bottom:1px solid var(--line)}
+.contact a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.contact svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.edu{margin-top:38px;color:var(--mute);font-size:.95rem}
+footer{padding:28px 0;color:var(--mute);font-size:.85rem;text-align:center}
+
+@media(max-width:820px){
+  .hero .grid,.two,.cards,.ins{grid-template-columns:1fr}
+  .contact{flex-direction:column;gap:18px}
+  .contact a,.contact span{word-break:break-all}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .skills{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr;gap:4px}
+  .bar{grid-template-columns:110px 1fr 48px}
+}
+@media(prefers-reduced-motion:reduce){.ecg path,.rec i{animation:none;stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="brand">Rishi.verma</span>
+  <a class="l" href="#about">About</a>
+  <a class="l" href="#education">Education</a>
+  <a class="l" href="#projects">Projects</a>
+  <a class="l" href="#skills">Skills</a>
+  <a class="l" href="#why">Approach</a>
+  <a class="l" href="#contact">Contact</a>
+  <button class="theme" id="theme" aria-label="Toggle theme">light</button>
+</div></nav>
+
+<header class="hero" id="about"><div class="wrap grid">
+  <div>
+    <div class="rec"><i></i> LIVE · B.Tech CSE (AI) · Batch 2023–2027</div>
+    <h1>Rishi Verma</h1>
+    <p class="role">AI / ML Engineer — Predictive Modelling, Interpretability &amp; Deployed ML</p>
+    <p class="lead">I turn raw tabular data into models people can actually use. I build end-to-end machine learning systems — cleaning the data, engineering features that make domain sense, training and comparing several models, explaining <em>why</em> they predict what they predict, and shipping the result as a live web app. Right now I'm in the 4th year of B.Tech in Computer Science &amp; Engineering (Artificial Intelligence) at Babu Banarasi Das University, Lucknow.</p>
+    <div class="btns">
+      <a class="btn p" href="#projects">View projects</a>
+      <a class="btn" href="#contact">Get in touch</a>
+      <a class="btn" href="https://www.linkedin.com/in/rishi-verma-5b5701221" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="monitor" aria-hidden="true">
+    <div class="top"><span>LEAD II · <b>ENSEMBLE ONLINE</b></span><span>25 mm/s</span></div>
+    <svg class="ecg" viewBox="0 0 400 120" preserveAspectRatio="none">
+      <path d="M0 70 H40 L50 70 L56 62 L62 70 H90 L98 74 L106 20 L114 104 L122 70 H160 L170 70 L178 58 L190 70 H230 L238 74 L246 20 L254 104 L262 70 H300 L310 70 L318 62 L326 70 H360 L368 74 L376 20 L384 104 L392 70 H400"/>
+    </svg>
+    <div class="vit">
+      <div>ACCURACY<strong>74.1%</strong></div>
+      <div>AUC-ROC<strong>0.812</strong></div>
+      <div>MODELS<strong>6 → 1</strong></div>
+    </div>
+  </div>
+</div></header>
+
+<section id="numbers"><div class="wrap">
+  <div class="tag">Log line</div>
+  <h2>Interpretable ML, shipped — not left in a notebook</h2>
+  <p class="lead">A cardiovascular risk predictor trained on tens of thousands of patient records, validated several ways, explained at three levels, and deployed publicly.</p>
+  <div class="stats">
+    <div class="stat"><b>68,530</b><span>cleaned patient records (cardio_train dataset)</span></div>
+    <div class="stat"><b>6</b><span>classifiers combined by a soft-voting ensemble</span></div>
+    <div class="stat"><b>0.812</b><span>AUC-ROC of the final ensemble</span></div>
+    <div class="stat"><b>76.5%</b><span>precision — highest among all models</span></div>
+  </div>
+</div></section>
+
+<section id="education"><div class="wrap">
+  <div class="tag">Timeline</div>
+  <h2>Education &amp; milestones</h2>
+  <p class="lead">Logged in order, newest first.</p>
+  <div class="log">
+    <div class="row"><div class="n">003</div><div class="d">2026 · JUN</div><div><h3>Minor Project — Heart Disease Prediction (Ensemble ML + Web Deployment)</h3><p>Completed and submitted as a three-member team project under Mr. Anand Kumar Pandey (Assistant Professor, Dept. of CSE). Deployed live on Render.</p></div></div>
+    <div class="row"><div class="n">002</div><div class="d">2023 – 2027</div><div><h3>B.Tech — Computer Science &amp; Engineering (Artificial Intelligence)</h3><p>School of Engineering, Babu Banarasi Das University, Lucknow. Currently in 4th year.</p></div></div>
+    <div class="row"><div class="n">001</div><div class="d">2023</div><div><h3>Started the AI specialisation track</h3><p>Python, machine learning, data analysis and web development — the foundation for the projects below.</p></div></div>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <div class="tag">Projects</div>
+  <h2>What I've built</h2>
+  <p class="lead">Each project ends with something you can open, run or read — not just a score.</p>
+  <div class="filters" role="tablist">
+    <button class="chip on" data-f="all">All</button>
+    <button class="chip" data-f="ml">Machine learning</button>
+    <button class="chip" data-f="web">Web &amp; deployment</button>
+    <button class="chip" data-f="sys">Systems</button>
+  </div>
+
+  <article class="feature" data-cat="ml web">
+    <div class="tag">Featured · Medical ML · Minor Project 2026</div>
+    <h3>Heart Disease Prediction Using Ensemble Machine Learning with Web Deployment</h3>
+    <p>Cardiovascular disease causes roughly 18 million deaths a year, and linear risk scores such as Framingham miss non-linear and interaction effects between risk factors. This project builds a full ML framework on the public <em>cardio_train</em> dataset (68,530 cleaned records, near-balanced classes) and delivers it as a patient-facing risk assessment tool with lifestyle recommendations across six clinical domains.</p>
+
+    <div class="two">
+      <div>
+        <h4>How it works</h4>
+        <ul>
+          <li><span>Unified scikit-learn Pipeline</span><span>RobustScaler + OneHot</span></li>
+          <li><span>Engineered features</span><span>Age (yrs) · BMI · Pulse pressure</span></li>
+          <li><span>Base models</span><span>MLP · GB · HGB · RF · AdaBoost · LR</span></li>
+          <li><span>Combination</span><span>Soft-voting (probabilities)</span></li>
+          <li><span>Serving</span><span>Flask REST API + HTML/CSS/JS</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Soft-voting ensemble results</h4>
+        <ul>
+          <li><span>Accuracy</span><span>74.12%</span></li>
+          <li><span>Precision</span><span>76.46%</span></li>
+          <li><span>Recall</span><span>68.91%</span></li>
+          <li><span>F1-score</span><span>72.49%</span></li>
+          <li><span>Specificity</span><span>79.21%</span></li>
+          <li><span>AUC-ROC</span><span>0.812</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="sub">What drives the prediction (Gradient Boosting importances)</div>
+      <div class="bars">
+        <div class="bar"><span>Systolic blood pressure</span><div><i style="width:100%"></i></div><em>0.696</em></div>
+        <div class="bar"><span>Age</span><div><i style="width:19.8%"></i></div><em>0.137</em></div>
+        <div class="bar"><span>Cholesterol (severely high)</span><div><i style="width:10.4%"></i></div><em>0.072</em></div>
+      </div>
+      <p style="margin-top:10px;font-size:.93rem">Confirmed with Partial Dependence Plots, 2D interaction surfaces (age × systolic BP, systolic BP × BMI) and a Mutual Information dependency matrix. The PDP risk thresholds line up with ACC/AHA hypertension staging, and the interaction analysis shows <b>age-specific</b> blood-pressure risk thresholds.</p>
+    </div>
+
+    <div class="pills"><span class="pill">Python</span><span class="pill">scikit-learn</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Flask</span><span class="pill">REST API</span><span class="pill">JavaScript</span><span class="pill">Render</span></div>
+    <div class="btns">
+      <a class="btn p" href="https://heart-disease-prediction-ftay.onrender.com/" target="_blank" rel="noopener">Open live app →</a>
+    </div>
+    <p style="margin-top:14px;font-size:.85rem">Honest limits, as written in the report: metrics were computed on the training corpus, so a held-out test set and cross-validation are the next step; the false-negative rate is 31.09% at the default 0.5 threshold, which is too high for population screening. Planned work: SHAP explanations and external validation.</p>
+  </article>
+
+  <article class="feature" data-cat="web sys">
+    <div class="tag">Full-stack · Exam &amp; academic management</div>
+    <h3>BBDU Internal Exam Portal</h3>
+    <p>A role-based web portal that replaces spreadsheets for internal exam marks at the university. Faculty enter CIA1/CIA2/CIA3 and makeup marks, HODs and coordinators track what's pending, and admins manage sessions, sections, subjects, students and faculty — with Excel/CSV import, export and a printable summary sheet.</p>
+    <div class="two">
+      <div>
+        <h4>What it does</h4>
+        <ul>
+          <li><span>Roles</span><span>Admin · Faculty · HOD · Coordinator · Programme</span></li>
+          <li><span>Marks</span><span>CIA1–3 + Makeup, scoring criteria</span></li>
+          <li><span>Reports</span><span>Summary sheet · Pending marks · Student history</span></li>
+          <li><span>Data in/out</span><span>Excel/CSV upload with preview · Templates · Export</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Under the hood</h4>
+        <ul>
+          <li><span>Frontend</span><span>React 18 + Axios</span></li>
+          <li><span>Backend</span><span>Node.js + Express · ~78 API routes</span></li>
+          <li><span>Auth</span><span>JWT + bcrypt · forced first-login password change</span></li>
+          <li><span>Database</span><span>MySQL · triggers version every mark change</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pills"><span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">MySQL</span><span class="pill">JWT</span><span class="pill">bcrypt</span><span class="pill">SheetJS (xlsx)</span></div>
+  </article>
+
+  <article class="feature" data-cat="web sys">
+    <div class="tag">Full-stack · Online examination</div>
+    <h3>Campus — University Exam Portal</h3>
+    <p>An online examination platform for students and admins. Admins schedule exams, upload questions in bulk, watch a live monitor while the test runs, and release results when ready; students sit timed exams under anti-cheat controls and see ranks afterwards. Built production-ready, with a deployment guide targeting 2,000+ students.</p>
+    <div class="two">
+      <div>
+        <h4>Features</h4>
+        <ul>
+          <li><span>Access</span><span>College-email-only sign-in · admin enable/disable</span></li>
+          <li><span>Exams</span><span>MCQ + written questions · CSV/Excel bulk upload</span></li>
+          <li><span>Integrity</span><span>Tab-switch &amp; blur detection · copy/paste blocked · auto-submit timer</span></li>
+          <li><span>Results</span><span>Per-exam, average &amp; overall rank · marks lock · release/hide</span></li>
+          <li><span>Admin</span><span>Live monitor · Excel/PDF exports · notifications</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Under the hood</h4>
+        <ul>
+          <li><span>Backend</span><span>Flask 3 · ~49 routes</span></li>
+          <li><span>Security</span><span>bcrypt · Flask-WTF CSRF · Flask-Limiter</span></li>
+          <li><span>Database</span><span>MySQL · pooled connections · indexed queries · versioned migrations</span></li>
+          <li><span>Deploy</span><span>Gunicorn + Nginx reverse proxy</span></li>
+          <li><span>Reports</span><span>pandas / openpyxl · ReportLab PDFs</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pills"><span class="pill">Python</span><span class="pill">Flask</span><span class="pill">MySQL</span><span class="pill">Bootstrap 5</span><span class="pill">JavaScript</span><span class="pill">Gunicorn</span><span class="pill">Nginx</span><span class="pill">pandas</span><span class="pill">ReportLab</span></div>
+  </article>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="tag">Toolbox</div>
+  <h2>What I work with</h2>
+  <p class="lead">Drawn from the project I've actually delivered.</p>
+  <div class="skills">
+    <div class="card"><h3>LANGUAGES</h3><div class="pills"><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">SQL</span><span class="pill">HTML5</span><span class="pill">CSS3</span></div></div>
+    <div class="card"><h3>MACHINE LEARNING</h3><div class="pills"><span class="pill">scikit-learn</span><span class="pill">Ensemble methods</span><span class="pill">Random Forest</span><span class="pill">Gradient Boosting</span><span class="pill">MLP</span><span class="pill">Soft voting</span><span class="pill">Feature engineering</span></div></div>
+    <div class="card"><h3>EXPLAINABILITY</h3><div class="pills"><span class="pill">Feature importance</span><span class="pill">Partial dependence</span><span class="pill">Interaction surfaces</span><span class="pill">Mutual information</span><span class="pill">ROC / AUC</span></div></div>
+    <div class="card"><h3>DATA</h3><div class="pills"><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Data cleaning</span><span class="pill">EDA</span></div></div>
+    <div class="card"><h3>BACKEND</h3><div class="pills"><span class="pill">Flask</span><span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">REST APIs</span><span class="pill">JWT</span><span class="pill">bcrypt</span></div></div>
+    <div class="card"><h3>FRONTEND</h3><div class="pills"><span class="pill">React</span><span class="pill">Bootstrap 5</span><span class="pill">Vanilla JS</span><span class="pill">Axios</span><span class="pill">Responsive UI</span></div></div>
+    <div class="card"><h3>DATABASES</h3><div class="pills"><span class="pill">MySQL</span><span class="pill">Schema design</span><span class="pill">Triggers</span><span class="pill">Migrations</span><span class="pill">Indexing</span></div></div>
+    <div class="card"><h3>DEPLOY &amp; TOOLS</h3><div class="pills"><span class="pill">Render</span><span class="pill">Gunicorn</span><span class="pill">Nginx</span><span class="pill">Git</span><span class="pill">Excel / CSV import-export</span></div></div>
+  </div>
+</div></section>
+
+<section id="why"><div class="wrap">
+  <div class="tag">Approach</div>
+  <h2>Why the details matter</h2>
+  <p class="lead">A model that scores well is only half the job. The other half is knowing when to trust it.</p>
+  <div class="ins">
+    <div class="card"><h3>Features that make clinical sense</h3><p>Instead of feeding raw columns, I derived <b>BMI</b>, <b>age in years</b> and <b>pulse pressure</b> — variables a clinician would recognise — and checked with Mutual Information that they added real signal.</p></div>
+    <div class="card"><h3>Explain it at three levels</h3><p>Global importances say what matters; partial dependence shows <b>where</b> risk turns up; interaction surfaces show how factors <b>combine</b>. Together they check the model against known cardiology, not just a metric.</p></div>
+    <div class="card"><h3>Choose the metric that fits the harm</h3><p>The ensemble has the highest precision of all six models, keeping false alarms down — and I report the 31% false-negative rate plainly because that is what matters for screening.</p></div>
+    <div class="card"><h3>Ship it, then use it</h3><p>The model sits behind a Flask API with a responsive front end, sub-second inference and personalised recommendations. Deploying exposes problems a notebook never will.</p></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="tag">Roll credits</div>
+  <h2>Let's talk.</h2>
+  <p class="lead">Open to internships, projects and full-time roles in AI/ML after graduation in 2027. Based in Lucknow, Uttar Pradesh, India.</p>
+  <div class="contact">
+    <a href="mailto:vivekberma01780@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>vivekberma01780@gmail.com</a>
+    <a href="tel:+916306672117"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>+91 63066 72117</a>
+    <a href="https://www.linkedin.com/in/rishi-verma-5b5701221" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5m0 2a2.5 2.5 0 0 1 5 0v3"/></svg>linkedin.com/in/rishi-verma-5b5701221</a>
+    <span><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Indira Nagar, Lucknow 226016</span>
+  </div>
+  <p class="edu">Bachelor of Technology — Computer Science &amp; Engineering (AI), Babu Banarasi Das University · 2023–2027</p>
+</div></section>
+
+<footer><div class="wrap">© <span id="y"></span> Rishi Verma</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  function set(t){root.setAttribute('data-theme',t);btn.textContent=t==='dark'?'light':'dark';try{localStorage.setItem('theme',t)}catch(e){}}
+  var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+  set(saved||'dark');
+  btn.addEventListener('click',function(){set(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+  document.getElementById('y').textContent=new Date().getFullYear();
+  var chips=document.querySelectorAll('.chip'),items=document.querySelectorAll('[data-cat]');
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.classList.remove('on')});c.classList.add('on');
+    var f=c.dataset.f;
+    items.forEach(function(i){i.classList.toggle('hidden',f!=='all'&&i.dataset.cat.split(' ').indexOf(f)<0)});
+  })});
+})();
+</script>
+</body>
+</html>
